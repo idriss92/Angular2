@@ -7,6 +7,15 @@ import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 
 
+import {provide}           from 'angular2/core';
+import {XHRBackend}        from 'angular2/http';
+
+// in-memory web api imports
+import {InMemoryBackendService,
+        SEED_DATA}         from 'a2-in-memory-web-api/core';
+import {HeroData}          from './hero-data';
+
+
 @Component({
     selector:'my-app',
   template: `
@@ -21,7 +30,10 @@ import { HeroDetailComponent } from './hero-detail.component';
     directives: [ROUTER_DIRECTIVES],
     providers : [
         ROUTER_PROVIDERS,
-        HeroService
+        HeroService,
+        // in-memory web api providers
+        provide(XHRBackend, { useClass: InMemoryBackendService }), // in-mem server
+        provide(SEED_DATA,  { useClass: HeroData }) // in-mem server data
     ]
 })
 
@@ -46,5 +58,5 @@ import { HeroDetailComponent } from './hero-detail.component';
 
 
 export class AppComponent{
-    title : 'Tour of Heroes';
+    title : string;
 }

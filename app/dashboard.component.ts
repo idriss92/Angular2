@@ -20,7 +20,7 @@ constructor(
     
   ngOnInit() {
     this._heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1,5));
+      .then(heroes => this.heroes = heroes.slice(1,3));
   }
     
     gotoDetail(hero: Hero){

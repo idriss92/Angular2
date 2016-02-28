@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './hero.service', './dashboard.component', './heroes.component', './hero-detail.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './hero.service', './dashboard.component', './heroes.component', './hero-detail.component', 'angular2/http', 'a2-in-memory-web-api/core', './hero-data'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,13 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './dashbo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, hero_service_1, dashboard_component_1, heroes_component_1, hero_detail_component_1;
+    var core_1, router_1, hero_service_1, dashboard_component_1, heroes_component_1, hero_detail_component_1, core_2, http_1, core_3, hero_data_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+                core_2 = core_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -31,6 +32,15 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './dashbo
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (core_3_1) {
+                core_3 = core_3_1;
+            },
+            function (hero_data_1_1) {
+                hero_data_1 = hero_data_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -44,7 +54,10 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './dashbo
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
-                            hero_service_1.HeroService
+                            hero_service_1.HeroService,
+                            // in-memory web api providers
+                            core_2.provide(http_1.XHRBackend, { useClass: core_3.InMemoryBackendService }),
+                            core_2.provide(core_3.SEED_DATA, { useClass: hero_data_1.HeroData }) // in-mem server data
                         ]
                     }),
                     router_1.RouteConfig([

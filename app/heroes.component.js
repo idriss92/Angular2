@@ -38,10 +38,20 @@ System.register(['angular2/core', 'angular2/router', './hero-detail.component', 
                 HeroesComponent.prototype.onSelect = function (hero) { this.selectedHero = hero; };
                 HeroesComponent.prototype.getHeroes = function () {
                     var _this = this;
-                    this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+                    this._heroService.getHeroes()
+                        .then(function (heroes) { return _this.heroes = heroes; }, function (error) { return _this.errorMessage = error; });
+                    //this._heroService.getHeroes().then(heroes => this.heroes = heroes);
                 };
                 HeroesComponent.prototype.gotoDetail = function () {
                     this._router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
+                };
+                HeroesComponent.prototype.addHero = function (name) {
+                    var _this = this;
+                    if (!name) {
+                        return;
+                    }
+                    this._heroService.addHero(name)
+                        .then(function (hero) { return _this.heroes.push(hero); }, function (error) { return _this.errorMessage = error; });
                 };
                 HeroesComponent = __decorate([
                     core_1.Component({

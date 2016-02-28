@@ -18,6 +18,7 @@ import {HeroService} from './hero.service'
 export class HeroesComponent implements OnInit { 
     heroes: Hero[];
     selectedHero: Hero;
+    errorMessage : string;
   
     ngOnInit(){
         this.getHeroes();
@@ -32,9 +33,23 @@ export class HeroesComponent implements OnInit {
     }
     
     getHeroes(){
-        this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+        this._heroService.getHeroes()
+                        .then(
+                            heroes => this.heroes = heroes,
+                            error => this.errorMessage = <any> error
+                        );
+        //this._heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
     gotoDetail() {
     this._router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
-  }
+    }
+    
+    addHero(name:string){
+        if(!name){return;}
+        this._heroService.addHero(name)
+                            .then(
+                                hero => this.heroes.push(hero),
+                                error => this.errorMessage = <any> error
+                            );
+    }
 }
