@@ -2,10 +2,15 @@
   <head>
     <base href="/">
     <title>Fifa 16 League - Talentsoft</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+<!-- Setting the right viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Auth0 Lock script -->
+<script src="//cdn.auth0.com/js/lock-8.2.min.js"></script>
 
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
+
+
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
     <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
 
@@ -14,15 +19,16 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/router.dev.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- 2. Configure SystemJS -->
     <script>
       System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
+        defaultJSExtensions : true,
+        map:{
+            "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt",
+            "angular2": "node_modules/angular2",
+            "rxjs": "node_modules/rxjs"
         }
       });
       System.import('app/main')

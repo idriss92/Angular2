@@ -28,7 +28,8 @@ System.register(['angular2/core', 'angular2/router', './hero-detail.component', 
             }],
         execute: function() {
             HeroesComponent = (function () {
-                function HeroesComponent(_router, _heroService) {
+                function HeroesComponent(_router, _heroService //,
+                    ) {
                     this._router = _router;
                     this._heroService = _heroService;
                 }

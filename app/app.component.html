@@ -1,0 +1,41 @@
+    <h1>{{title}}</h1>
+    <nav>
+        <a [routerLink]="['Dashboard']">Dashboard</a>
+        <a [routerLink]="['Heroes']">Heroes</a>  
+        <a [routerLink]="['AddHero']">Add new Hero</a>   
+        <a href="#" *ngIf="!loggedIn()" (click)="login()">Login</a>
+        <a href="#" *ngIf="loggedIn()" (click)="logout()">Logout</a>        
+    </nav>
+    <router-outlet><router-outlet>
+  <!--      
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Fifa16 - Leagues</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <!--ul class="nav navbar-nav">
+                <li [class.active]="isActive('')"><a [routerLink]="['/Home']">Todo</a></li>
+                <li [class.active]="isActive('/about/Hello world')"><a [routerLink]="['/About', {'id': 'Hello world'}]">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li *ngIf="loggedIn()" [class.active]="isActive('/profile')"><a [routerLink]="['Profile']">Profile</a></li>
+              <li *ngIf="loggedIn()" [class.active]="isActive('/addHero')"><a [routerLink]="['AddHero']">Add new Hero</a> </li>
+              <li *ngIf="loggedIn()" [class.active]="isActive('/dashboard')"><a [routerLink]="['Dashboard']">Dashboard</a></li>
+              <li *ngIf="loggedIn()" [class.active]="isActive('/heroes')"><a [routerLink]="['Heroes']">Heroes</a></li>
+              <li><a href="#" *ngIf="!loggedIn()" (click)="login()">Login</a></li>
+              <li><a href="#" *ngIf="loggedIn()" (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>    -->    
