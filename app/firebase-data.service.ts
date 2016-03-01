@@ -6,7 +6,7 @@ import {FirebaseService} from 'firebase-angular2/core';
 import {Hero} from "./hero";
 
 @Injectable()
-export class FirebaseDataService {
+export class FirebaseDataService {//implements HeroObservableService{
 
     private service:FirebaseService;
 

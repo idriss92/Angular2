@@ -4,14 +4,14 @@ import { tokenNotExpired, JwtHelper, AuthHttp} from 'angular2-jwt';
 import { LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
 
-
+import { TaskService } from './task-service'
 import { HeroService } from './hero.service';
 import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroAddComponent } from './hero-add.component';
 import {ProfileComponent} from './profile.component';
-
+import {TaskForm} from './task-component';
 declare var Auth0Lock;
 
 @Component({
@@ -34,6 +34,7 @@ declare var Auth0Lock;
                 <li [class.active]="isActive('/about/Hello world')"><a [routerLink]="['/About', {'id': 'Hello world'}]">About</a></li>
             </ul-->
             <ul class="nav navbar-nav navbar-right">
+              <li *ngIf="loggedIn()" [class.active]="isActive('/taskAdd')"><a [routerLink]="['TaskAdd']">Add new task</a> </li>            
               <li *ngIf="loggedIn()" [class.active]="isActive('/addHero')"><a [routerLink]="['AddHero']">Add new Hero</a> </li>
               <li *ngIf="loggedIn()" [class.active]="isActive('/dashboard')"><a [routerLink]="['Dashboard']">Dashboard</a></li>
               <li *ngIf="loggedIn()" [class.active]="isActive('/heroes')"><a [routerLink]="['Heroes']">Heroes</a></li>
@@ -60,8 +61,13 @@ declare var Auth0Lock;
     directives: [ROUTER_DIRECTIVES,RouterLink,RouterOutlet],
     providers : [
         ROUTER_PROVIDERS,
-        HeroService
+        HeroService,
+        TaskService
     ]
+    /*,
+    bindings : [
+        TaskService
+    ]*/
 })
 
 @RouteConfig([
@@ -96,6 +102,11 @@ declare var Auth0Lock;
         name: 'Home',
         component: DashboardComponent,
         useAsDefault: true
+    },
+    {
+        path:'/taskAdd',
+        name: 'TaskAdd',
+        component: TaskForm
     }
 ])
 
@@ -134,6 +145,7 @@ export class AppComponent{
         localStorage.removeItem('id_token');
         
         this.loggedIn();
+        window.location.replace('/');
     }
     
     loggedIn(){

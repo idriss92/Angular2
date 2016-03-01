@@ -15,7 +15,7 @@ import {CanActivate} from 'angular2/router';
 
 })
 
-//@CanActivate(() => tokenNotExpired())
+@CanActivate(() => tokenNotExpired())
 
 export class HeroesComponent implements OnInit { 
     heroes: Hero[];

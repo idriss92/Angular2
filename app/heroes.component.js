@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './hero-detail.component', './hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero-detail.component', './hero.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './hero-detail.component', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, hero_detail_component_1, hero_service_1;
+    var core_1, router_1, angular2_jwt_1, hero_detail_component_1, hero_service_1, router_2;
     var HeroesComponent;
     return {
         setters:[
@@ -19,6 +19,10 @@ System.register(['angular2/core', 'angular2/router', './hero-detail.component', 
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+                router_2 = router_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
@@ -50,7 +54,8 @@ System.register(['angular2/core', 'angular2/router', './hero-detail.component', 
                         templateUrl: 'app/heroes.component.html',
                         directives: [hero_detail_component_1.HeroDetailComponent],
                         styleUrls: ['app/heroes.component.css']
-                    }), 
+                    }),
+                    router_2.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
                     __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])
                 ], HeroesComponent);
                 return HeroesComponent;

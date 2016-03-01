@@ -10,7 +10,7 @@ import {tokenNotExpired} from 'angular2-jwt';
     templateUrl: 'app/hero-add.component.html'
 })
 
-//@CanActivate(() => tokenNotExpired())
+@CanActivate(() => tokenNotExpired())
 
 export class HeroAddComponent{
     

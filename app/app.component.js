@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.service', './dashboard.component', './heroes.component', './hero-detail.component', './hero-add.component', './profile.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './task-service', './hero.service', './dashboard.component', './heroes.component', './hero-detail.component', './hero-add.component', './profile.component', './task-component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, angular2_jwt_1, hero_service_1, dashboard_component_1, heroes_component_1, hero_detail_component_1, hero_add_component_1, profile_component_1;
+    var core_1, router_1, angular2_jwt_1, task_service_1, hero_service_1, dashboard_component_1, heroes_component_1, hero_detail_component_1, hero_add_component_1, profile_component_1, task_component_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
             },
             function (angular2_jwt_1_1) {
                 angular2_jwt_1 = angular2_jwt_1_1;
+            },
+            function (task_service_1_1) {
+                task_service_1 = task_service_1_1;
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
@@ -40,6 +43,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
             },
             function (profile_component_1_1) {
                 profile_component_1 = profile_component_1_1;
+            },
+            function (task_component_1_1) {
+                task_component_1 = task_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -65,6 +71,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
                     localStorage.removeItem('profile');
                     localStorage.removeItem('id_token');
                     this.loggedIn();
+                    window.location.replace('/');
                 };
                 AppComponent.prototype.loggedIn = function () {
                     return angular2_jwt_1.tokenNotExpired();
@@ -75,7 +82,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n<nav class=\"navbar navbar-default navbar-static-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Fifa16 - Leagues</a>\n        </div>\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\n            <!--ul class=\"nav navbar-nav\">\n                <li [class.active]=\"isActive('')\"><a [routerLink]=\"['/Home']\">Todo</a></li>\n                <li [class.active]=\"isActive('/about/Hello world')\"><a [routerLink]=\"['/About', {'id': 'Hello world'}]\">About</a></li>\n            </ul-->\n            <ul class=\"nav navbar-nav navbar-right\">\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/addHero')\"><a [routerLink]=\"['AddHero']\">Add new Hero</a> </li>\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/dashboard')\"><a [routerLink]=\"['Dashboard']\">Dashboard</a></li>\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/heroes')\"><a [routerLink]=\"['Heroes']\">Heroes</a></li>\n              <li><a href=\"#\" *ngIf=\"!loggedIn()\" (click)=\"login()\">Login</a></li>\n              <li><a href=\"#\" *ngIf=\"loggedIn()\" (click)=\"logout()\">Logout</a></li>\n            </ul>\n        </div>\n    </div>\n</nav> \n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>    ",
+                        template: "\n<nav class=\"navbar navbar-default navbar-static-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">Fifa16 - Leagues</a>\n        </div>\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\n            <!--ul class=\"nav navbar-nav\">\n                <li [class.active]=\"isActive('')\"><a [routerLink]=\"['/Home']\">Todo</a></li>\n                <li [class.active]=\"isActive('/about/Hello world')\"><a [routerLink]=\"['/About', {'id': 'Hello world'}]\">About</a></li>\n            </ul-->\n            <ul class=\"nav navbar-nav navbar-right\">\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/taskAdd')\"><a [routerLink]=\"['TaskAdd']\">Add new task</a> </li>            \n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/addHero')\"><a [routerLink]=\"['AddHero']\">Add new Hero</a> </li>\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/dashboard')\"><a [routerLink]=\"['Dashboard']\">Dashboard</a></li>\n              <li *ngIf=\"loggedIn()\" [class.active]=\"isActive('/heroes')\"><a [routerLink]=\"['Heroes']\">Heroes</a></li>\n              <li><a href=\"#\" *ngIf=\"!loggedIn()\" (click)=\"login()\">Login</a></li>\n              <li><a href=\"#\" *ngIf=\"loggedIn()\" (click)=\"logout()\">Logout</a></li>\n            </ul>\n        </div>\n    </div>\n</nav> \n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>    ",
                         //templateUrl: 'app/app.component.html',
                         /* template: `
                              <nav>
@@ -90,7 +97,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
                         directives: [router_1.ROUTER_DIRECTIVES, router_1.RouterLink, router_1.RouterOutlet],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
-                            hero_service_1.HeroService
+                            hero_service_1.HeroService,
+                            task_service_1.TaskService
                         ]
                     }),
                     router_1.RouteConfig([
@@ -124,6 +132,11 @@ System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.ser
                             name: 'Home',
                             component: dashboard_component_1.DashboardComponent,
                             useAsDefault: true
+                        },
+                        {
+                            path: '/taskAdd',
+                            name: 'TaskAdd',
+                            component: task_component_1.TaskForm
                         }
                     ]), 
                     __metadata('design:paramtypes', [router_1.Location])

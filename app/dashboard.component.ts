@@ -1,6 +1,6 @@
 import { Component, OnInit} from 'angular2/core';
-import { Router } from 'angular2/router';
-
+import { Router, CanActivate } from 'angular2/router';
+import { tokenNotExpired } from 'angular2-jwt'
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
 
@@ -9,6 +9,8 @@ import {HeroService} from './hero.service';
     templateUrl: 'app/dashboard.component.html',
     styleUrls: ['app/dashboard.component.css']
 })
+
+@CanActivate(() => tokenNotExpired())
 
 export class DashboardComponent implements OnInit{
     heroes : Hero[] = [];

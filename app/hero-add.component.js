@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero'], function(exports_1, context_1) {
+System.register(['angular2/core', './hero', 'angular2/router', 'angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_1;
+    var core_1, hero_1, router_1, angular2_jwt_1;
     var HeroAddComponent;
     return {
         setters:[
@@ -19,6 +19,12 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
             },
             function (hero_1_1) {
                 hero_1 = hero_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
             HeroAddComponent = (function () {
@@ -50,7 +56,8 @@ System.register(['angular2/core', './hero'], function(exports_1, context_1) {
                     core_1.Component({
                         selector: 'hero-add',
                         templateUrl: 'app/hero-add.component.html'
-                    }), 
+                    }),
+                    router_1.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
                     __metadata('design:paramtypes', [])
                 ], HeroAddComponent);
                 return HeroAddComponent;

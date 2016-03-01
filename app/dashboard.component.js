@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './hero.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2-jwt', './hero.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './hero.service'], function
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, hero_service_1;
+    var core_1, router_1, angular2_jwt_1, hero_service_1;
     var DashboardComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/router', './hero.service'], function
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
@@ -44,7 +47,8 @@ System.register(['angular2/core', 'angular2/router', './hero.service'], function
                         selector: 'my-dashboard',
                         templateUrl: 'app/dashboard.component.html',
                         styleUrls: ['app/dashboard.component.css']
-                    }), 
+                    }),
+                    router_1.CanActivate(function () { return angular2_jwt_1.tokenNotExpired(); }), 
                     __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])
                 ], DashboardComponent);
                 return DashboardComponent;

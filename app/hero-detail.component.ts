@@ -14,7 +14,7 @@ import { HeroService } from './hero.service';
     inputs:['hero']
 })
 
-//@CanActivate(() => tokenNotExpired())
+@CanActivate(() => tokenNotExpired())
 export class HeroDetailComponent implements OnInit{
     hero : Hero;
     
